@@ -1,31 +1,30 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:netflics/popular_movies/http_function/popular_function.dart';
-import 'package:netflics/popular_movies/modal/popular_movies/popular_movies.dart';
-import 'package:netflics/screen/homescreen.dart';
+import 'package:netflics/screen/homescreenfolder/homescreen.dart';
+import 'package:netflics/trending/httpfunctions/trending_functions.dart';
+import 'package:netflics/trending/modal/trending_modal/trending_modal.dart';
 
-class PopularScrn extends StatelessWidget {
-  const PopularScrn({
+class TrendingScrn extends StatelessWidget {
+  const TrendingScrn({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    List<PopularMovies>? popularlist;
+    List<TrendingModal>? trendinglist;
     return FutureBuilder(
-      future: getallPopularmovies(apikey),
+      future: getalltrending(apikey),
       builder: (context, snapshot) {
-        print(snapshot.data?.data);
         if (snapshot.connectionState == ConnectionState.done) {
-          popularlist = snapshot.data!.data;
-          print(popularlist);
+          trendinglist = snapshot.data!.data;
         }
 
-        if (popularlist != null) {
-          for (PopularMovies item in popularlist!) {
+        if (trendinglist != null) {
+          for (TrendingModal item in trendinglist!) {
             if (item.posterPath != null &&
-                !pageviewlist.value.contains(item.posterPath)) {
+                !pageviewlist.value.contains(item.posterPath)&&
+                pageviewlist.value.length<=3) {
               pageviewlist.value.add(item.posterPath!);
               break;
             }
@@ -44,11 +43,11 @@ class PopularScrn extends StatelessWidget {
                 child: snapshot.connectionState == ConnectionState.waiting
                     ? const SizedBox(
                         child: Center(child: CircularProgressIndicator()))
-                    : popularlist?[index].posterPath != null
+                    : trendinglist?[index].backdropPath != null
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.network(
-                              imagepath + popularlist![index].posterPath!,
+                              imagepath + trendinglist![index].posterPath!,
                               fit: BoxFit.fill,
                             ),
                           )
@@ -60,7 +59,7 @@ class PopularScrn extends StatelessWidget {
                 ),
             itemCount: snapshot.connectionState == ConnectionState.waiting
                 ? 10
-                : popularlist?.length ?? 0);
+                : trendinglist?.length ?? 0);
       },
     );
   }

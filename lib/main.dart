@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:netflics/screen/homescreen.dart';
+import 'package:netflics/screen/homescreenfolder/homescreen.dart';
+import 'package:netflics/screen/navbar/navigationscrn.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Netflix',
       theme: ThemeData(brightness: Brightness.dark),
-      home: const HomeScreen(),
+      home: const Navigation(),
     );
   }
 }

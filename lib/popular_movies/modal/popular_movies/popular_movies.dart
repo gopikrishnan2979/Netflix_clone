@@ -10,18 +10,14 @@ class PopularMovies {
   String? originaltitle;
   @JsonKey(name: 'title')
   String? title;
-  @JsonKey(name: 'id')
-  int? id;
 
   PopularMovies({
     this.posterPath,
     this.originaltitle,
     this.title,
-    this.id,
   });
 
   factory PopularMovies.fromJson(Map<String, dynamic> json) {
-    print('Json datapopularmovies$json');
     return _$PopularMoviesFromJson(json);
   }
 

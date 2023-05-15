@@ -1,30 +1,33 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:netflics/screen/homescreen.dart';
+import 'package:netflics/screen/homescreenfolder/homescreen.dart';
+import 'package:netflics/top_tv_shows/modal/tv_show_modal/top_tvshow_modal.dart';
+import 'package:netflics/top_tv_shows/tv_show_function/httpfunction.dart';
 import 'package:netflics/trending/httpfunctions/trending_functions.dart';
 import 'package:netflics/trending/modal/trending_modal/trending_modal.dart';
 
-class TrendingScrn extends StatelessWidget {
-  const TrendingScrn({
+class TopTvShowScrn extends StatelessWidget {
+  const TopTvShowScrn({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    List<TrendingModal>? trendinglist;
+    List<TopTvShows>? trendinglist;
     return FutureBuilder(
-      future: getalltrending(apikey),
+      future: getAllTopTvshow(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           trendinglist = snapshot.data!.data;
         }
 
         if (trendinglist != null) {
-          for (TrendingModal item in trendinglist!) {
-            if (item.posterPath != null &&
-                !pageviewlist.value.contains(item.posterPath)) {
-              pageviewlist.value.add(item.posterPath!);
+          for (TopTvShows item in trendinglist!) {
+            if (item.posterpath != null &&
+                !pageviewlist.value.contains(item.posterpath)&&
+                pageviewlist.value.length<=3) {
+              pageviewlist.value.add(item.posterpath!);
               break;
             }
           }
@@ -42,11 +45,11 @@ class TrendingScrn extends StatelessWidget {
                 child: snapshot.connectionState == ConnectionState.waiting
                     ? const SizedBox(
                         child: Center(child: CircularProgressIndicator()))
-                    : trendinglist?[index].backdropPath != null
+                    : trendinglist?[index].posterpath != null
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.network(
-                              imagepath + trendinglist![index].posterPath!,
+                              imagepath + trendinglist![index].posterpath!,
                               fit: BoxFit.fill,
                             ),
                           )

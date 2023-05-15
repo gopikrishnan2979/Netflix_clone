@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflics/screen/homescreen.dart';
+import 'package:netflics/screen/homescreenfolder/homescreen.dart';
 
 class ImageChange extends StatelessWidget {
   const ImageChange({

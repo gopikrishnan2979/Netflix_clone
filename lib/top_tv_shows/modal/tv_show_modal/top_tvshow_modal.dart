@@ -7,13 +7,11 @@ class TopTvShows {
   String? posterpath;
   @JsonKey(name: 'name')
   String? name;
-  @JsonKey(name: 'id')
-  int? id;
+
 
   TopTvShows(
     this.posterpath,
     this.name,
-    this.id,
   );
   factory TopTvShows.fromJson(Map<String, dynamic> json) {
     return _$TopTvShowsFromJson(json);
