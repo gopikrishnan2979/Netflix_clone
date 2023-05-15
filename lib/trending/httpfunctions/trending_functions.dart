@@ -7,4 +7,5 @@ Future<Getalltrending> getalltrending(String key) async {
   final response = await http.get(Uri.parse(baseurl + key));
   final value = jsonDecode(response.body) as Map<String, dynamic>;
   return Getalltrending.fromJson(value);
+  
 }
