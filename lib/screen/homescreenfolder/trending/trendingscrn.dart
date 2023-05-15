@@ -23,8 +23,8 @@ class TrendingScrn extends StatelessWidget {
         if (trendinglist != null) {
           for (TrendingModal item in trendinglist!) {
             if (item.posterPath != null &&
-                !pageviewlist.value.contains(item.posterPath)&&
-                pageviewlist.value.length<=3) {
+                !pageviewlist.value.contains(item.posterPath) &&
+                pageviewlist.value.length < 3) {
               pageviewlist.value.add(item.posterPath!);
               break;
             }
@@ -41,9 +41,8 @@ class TrendingScrn extends StatelessWidget {
                 color: Colors.black,
                 // width: 150,
                 child: snapshot.connectionState == ConnectionState.waiting
-                    ? const SizedBox(
-                        child: Center(child: CircularProgressIndicator()))
-                    : trendinglist?[index].backdropPath != null
+                    ? const SizedBox()
+                    : trendinglist?[index].posterPath != null
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.network(

@@ -25,8 +25,8 @@ class TopTvShowScrn extends StatelessWidget {
         if (trendinglist != null) {
           for (TopTvShows item in trendinglist!) {
             if (item.posterpath != null &&
-                !pageviewlist.value.contains(item.posterpath)&&
-                pageviewlist.value.length<=3) {
+                !pageviewlist.value.contains(item.posterpath) &&
+                pageviewlist.value.length < 3) {
               pageviewlist.value.add(item.posterpath!);
               break;
             }
@@ -43,8 +43,7 @@ class TopTvShowScrn extends StatelessWidget {
                 color: Colors.black,
                 // width: 150,
                 child: snapshot.connectionState == ConnectionState.waiting
-                    ? const SizedBox(
-                        child: Center(child: CircularProgressIndicator()))
+                    ? const SizedBox()
                     : trendinglist?[index].posterpath != null
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(8),

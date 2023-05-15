@@ -18,14 +18,13 @@ class PopularScrn extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           popularlist = snapshot.data!.data;
-          
         }
 
         if (popularlist != null) {
           for (PopularMovies item in popularlist!) {
             if (item.posterPath != null &&
-                !pageviewlist.value.contains(item.posterPath)&&
-                pageviewlist.value.length<=3) {
+                !pageviewlist.value.contains(item.posterPath) &&
+                pageviewlist.value.length < 3) {
               pageviewlist.value.add(item.posterPath!);
               break;
             }
@@ -42,8 +41,7 @@ class PopularScrn extends StatelessWidget {
                 color: Colors.black,
                 // width: 150,
                 child: snapshot.connectionState == ConnectionState.waiting
-                    ? const SizedBox(
-                        child: Center(child: CircularProgressIndicator()))
+                    ? const SizedBox()
                     : popularlist?[index].posterPath != null
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(8),

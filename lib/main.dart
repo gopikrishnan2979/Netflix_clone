@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:netflics/screen/homescreenfolder/homescreen.dart';
 import 'package:netflics/screen/navbar/navigationscrn.dart';
 
 void main(List<String> args) {
