@@ -4,13 +4,15 @@ part 'popular_movies_list.g.dart';
 
 @JsonSerializable()
 class PopularMoviesList {
-	List<PopularMovies>? data;
 
-	PopularMoviesList({this.data});
+  @JsonKey(name: 'results')
+  List<PopularMovies>? data;
 
-	factory PopularMoviesList.fromJson(Map<String, dynamic> json) {
-		return _$PopularMoviesListFromJson(json);
-	}
+  PopularMoviesList({this.data});
 
-	Map<String, dynamic> toJson() => _$PopularMoviesListToJson(this);
+  factory PopularMoviesList.fromJson(Map<String, dynamic> json) {
+    return _$PopularMoviesListFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() => _$PopularMoviesListToJson(this);
 }
