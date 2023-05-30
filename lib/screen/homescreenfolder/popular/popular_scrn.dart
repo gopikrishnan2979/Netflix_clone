@@ -17,7 +17,7 @@ class PopularScrn extends StatelessWidget {
       future: getallPopularmovies(apikey),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          popularlist = snapshot.data!.data;
+          popularlist = snapshot.data;
         }
 
         if (popularlist != null) {

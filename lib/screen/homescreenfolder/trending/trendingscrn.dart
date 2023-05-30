@@ -17,7 +17,7 @@ class TrendingScrn extends StatelessWidget {
       future: getalltrending(apikey),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          trendinglist = snapshot.data!.data;
+          trendinglist = snapshot.data;
         }
 
         if (trendinglist != null) {

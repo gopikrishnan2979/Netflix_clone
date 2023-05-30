@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflics/screen/downloads/downloads_scrn.dart';
-import 'package:netflics/screen/game/gamescreen.dart';
+import 'package:netflics/screen/search/searchscreen.dart';
 import 'package:netflics/screen/homescreenfolder/homescreen.dart';
 import 'package:netflics/screen/new_and_hot/new_and_hot_scrn.dart';
 
@@ -14,7 +14,7 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   final List<Widget> bodylist = [
     const HomeScreen(),
-    const GameScrn(),
+     SearchScrn(),
     const NewAndHotScrn(),
     const DownloadsScreen()
   ];
@@ -39,8 +39,7 @@ class _NavigationState extends State<Navigation> {
               icon: Icon(Icons.home_rounded),
               label: 'Home',
             ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.gamepad_outlined), label: 'Game'),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.video_library_outlined), label: 'New & Hot'),
             BottomNavigationBarItem(

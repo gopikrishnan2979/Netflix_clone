@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       pageviewlist.value.isEmpty
                           ? const SizedBox(
+                              height: 500,
                               child: Center(child: CircularProgressIndicator()),
                             )
                           : const ImageChange(),
@@ -69,7 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(
                         height: 8,
                       ),
-                      const SizedBox(height: 190, child: TopTvShowScrn())
+                      const SizedBox(height: 190, child: TopTvShowScrn()),
+                      const SizedBox(
+                        height: 10,
+                      )
                     ],
                   );
                 })),

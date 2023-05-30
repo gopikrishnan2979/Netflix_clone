@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflics/screen/new_and_hot/widgetsnew_&hot/tab_bar_view1.dart';
+import 'package:netflics/screen/new_and_hot/widgetsnew_&hot/tab_bar_view2.dart';
 
 class NewAndHotScrn extends StatelessWidget {
   const NewAndHotScrn({super.key});
@@ -72,7 +73,7 @@ class NewAndHotScrn extends StatelessWidget {
             ),
           ),
         ),
-        body: TabBarView(children: [TabBarView1()]),
+        body: TabBarView(children: [TabBarView1(), TabBarView2()]),
       ),
     );
   }

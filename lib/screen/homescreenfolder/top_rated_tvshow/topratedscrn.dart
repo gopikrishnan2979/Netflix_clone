@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:netflics/screen/homescreenfolder/homescreen.dart';
 import 'package:netflics/top_tv_shows/modal/tv_show_modal/top_tvshow_modal.dart';
 import 'package:netflics/top_tv_shows/tv_show_function/httpfunction.dart';
-import 'package:netflics/trending/httpfunctions/trending_functions.dart';
-import 'package:netflics/trending/modal/trending_modal/trending_modal.dart';
 
 class TopTvShowScrn extends StatelessWidget {
   const TopTvShowScrn({
@@ -19,7 +17,7 @@ class TopTvShowScrn extends StatelessWidget {
       future: getAllTopTvshow(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          trendinglist = snapshot.data!.data;
+          trendinglist = snapshot.data;
         }
 
         if (trendinglist != null) {

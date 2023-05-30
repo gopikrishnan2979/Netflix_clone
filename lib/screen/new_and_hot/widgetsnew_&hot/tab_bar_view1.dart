@@ -10,92 +10,122 @@ class TabBarView1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<UpcomingModal>? upcominglist;
-    return Scaffold(
-        backgroundColor: Colors.black,
-        body: FutureBuilder(
-          future: getAllUpcoming(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              upcominglist = snapshot.data!.data;
-            }
-            return ListView.separated(
-                itemBuilder: (context, index) {
-                  return Container(
-                    // color: Colors.grey[900],
-                    height: 400,
-                    child: snapshot.connectionState == ConnectionState.waiting
-                        ? const SizedBox()
-                        : upcominglist?[index] != null
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 50,
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: Colors.black,
+          body: FutureBuilder(
+            future: getAllUpcoming(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                upcominglist = snapshot.data;
+              }
+              return ListView.separated(
+                  itemBuilder: (context, index) {
+                    return Container(
+                      child: snapshot.connectionState == ConnectionState.waiting
+                          ? const SizedBox()
+                          : upcominglist?[index] != null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          Image.network(
-                                            imagepath +
+                                          const Text(
+                                            'JUN',
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          Text(
+                                            upcominglist![index]
+                                                    .releasedate![8] +
                                                 upcominglist![index]
-                                                    .backdropath!,
+                                                    .releasedate![9],
+                                            style: TextStyle(fontSize: 30),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 8.0),
-                                            child: Row(
-                                              children: [
-                                                SizedBox(
-                                                  width: 250,
-                                                  child: Text(
-                                                    upcominglist![index]
-                                                            .title ??
-                                                        "Loading...",
-                                                    style: GoogleFonts
-                                                        .robotoCondensed(
-                                                      textStyle:
-                                                          const TextStyle(
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              fontSize: 30),
-                                                    ),
-                                                  ),
-                                                ),
-                                                IconButton(
-                                                    onPressed: () {},
-                                                    icon: const Icon(
-                                                      Icons.notifications_none,
-                                                      size: 30,
-                                                    )),
-                                                IconButton(
-                                                    onPressed: () {},
-                                                    icon: const Icon(
-                                                      Icons.info_outline,
-                                                      size: 30,
-                                                    ))
-                                              ],
-                                            ),
-                                          ),
-                                          Text ('Coming on ${(upcominglist?[index].releasedate??"...")}'),
-                                          Text(upcominglist?[index].overview??'loading...')
                                         ],
                                       ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            : const Text("Couldn't find"),
-                  );
-                },
-                separatorBuilder: (context, index) => const SizedBox(
-                      height: 10,
-                    ),
-                itemCount: upcominglist?.length ?? 0);
-          },
-        ));
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Image.network(
+                                              imagepath +
+                                                  upcominglist![index]
+                                                      .backdropath!,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8.0),
+                                              child: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 250,
+                                                    child: Text(
+                                                      upcominglist![index]
+                                                              .title ??
+                                                          "Loading...",
+                                                      style: GoogleFonts
+                                                          .robotoCondensed(
+                                                        textStyle:
+                                                            const TextStyle(
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                fontSize: 25),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  IconButton(
+                                                      onPressed: () {},
+                                                      icon: const Icon(
+                                                        Icons
+                                                            .notifications_none,
+                                                        size: 30,
+                                                      )),
+                                                  IconButton(
+                                                      onPressed: () {},
+                                                      icon: const Icon(
+                                                        Icons.info_outline,
+                                                        size: 30,
+                                                      ))
+                                                ],
+                                              ),
+                                            ),
+                                            Text(
+                                              'Coming on ${(upcominglist?[index].releasedate ?? "...")}',
+                                              style: TextStyle(fontSize: 18),
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Text(
+                                              upcominglist?[index].overview ??
+                                                  'loading...',
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w200),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              : const Text("Couldn't find"),
+                    );
+                  },
+                  separatorBuilder: (context, index) => const SizedBox(
+                        height: 10,
+                      ),
+                  itemCount: upcominglist?.length ?? 0);
+            },
+          )),
+    );
   }
 }
